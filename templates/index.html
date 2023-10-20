@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Laptop-Friendly Cafes in London</title>
+  </head>
+  <body>
+    <h1>Laptop-Friendly Cafes in London</h1>
+    <ul>
+      {% for cafe in cafes %}
+      <li>
+        {{ cafe[1] }}<br>
+        <img src="{{ cafe[3] }}" width='300' height='300'><br>
+        <a href="{{ cafe[2] }}">Location</a><br>
+        {% if cafe[7] == 1 %}
+        Has Wifi: Y
+        {% else %}
+        Has Wifi: N
+        {% endif %}
+        <br>
+        {% if cafe[5] == 1 %}
+        Has Socket: Y
+        {% else %}
+        Has Socket: N
+        {% endif %}
+        <br>
+        <form action="{{ url_for('delete_cafe', id=cafe[0]) }}" method="POST">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+      {% endfor %}
+    </ul>
+    <a href="{{ url_for('add_cafe') }}">Add a Cafe</a>
+  </body>
+</html>
+
